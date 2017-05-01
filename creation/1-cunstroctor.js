@@ -4,9 +4,9 @@
 const Rx = require('rxjs/Rx');
 
 let numbers$ = new Rx.Observable(observer => {
-    observer.next(1);
-    observer.next(2);
-    observer.next(3);
+    observer.next('Banana');
+    observer.next('Kiwi');
+    observer.next('Ananas');
     observer.complete();
 });
 
