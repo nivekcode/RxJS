@@ -1,0 +1,29 @@
+{
+  "name": "rxjs-samples",
+  "version": "1.0.0",
+  "description": "Examples and showcases with RxJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kreuzerk/RxJS.git"
+  },
+  "keywords": [
+    "RxJS",
+    "Observable",
+    "Reactive",
+    "JavaScript"
+  ],
+  "author": "Kevin Kreuzer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kreuzerk/RxJS/issues"
+  },
+  "homepage": "https://github.com/kreuzerk/RxJS#readme",
+  "dependencies": {
+    "events": "^1.1.1",
+    "rxjs": "^5.3.0"
+  }
+}
