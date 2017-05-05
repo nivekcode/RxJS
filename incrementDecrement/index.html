@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Increment Decrement</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
 </head>
 <body>
-    <button id="increment-button">+</button>
-    <button id="decrement-button">-</button>
-    <output></output>
+<div class="jumbotron text-center">
+    <h3>Reactive Increment and Decrement</h3>
+    <button style="min-width: 200px" class="btn btn-primary" id="increment-button">Increment +</button>
+    <button style="min-width: 200px" class="btn btn-secondary" id="decrement-button">Decrement -</button>
+    <h4 style="margin-top: 15px"><output></output></h4>
+</div>
 </body>
 <script src="https://unpkg.com/rxjs/bundles/Rx.min.js"></script>
 <script type="text/javascript" src="incrementDecrement.js"></script>
