@@ -2,19 +2,20 @@
  * Created by kevinkreuzer on 05.05.17.
  */
 const svg = document.querySelector('svg')
-
 let ball = createBall()
+let duration = 2000;
 const easeLinear = x => x;
-function easeOutBounce(pos) {
-    if ((pos) < (1 / 2.75)) {
-        return (7.5625 * pos * pos);
-    } else if (pos < (2 / 2.75)) {
-        return (7.5625 * (pos -= (1.5 / 2.75)) * pos + 0.75);
-    } else if (pos < (2.5 / 2.75)) {
-        return (7.5625 * (pos -= (2.25 / 2.75)) * pos + 0.9375);
-    } else {
-        return (7.5625 * (pos -= (2.625 / 2.75)) * pos + 0.984375);
-    }
+
+function easeOutBounce(t) {
+     if ((t) < (1 / 2.75)) {
+     return (7.5625 * t * t);
+     } else if (t < (2 / 2.75)) {
+     return (7.5625 * (t -= (1.5 / 2.75)) * t + 0.75);
+     } else if (t < (2.5 / 2.75)) {
+     return (7.5625 * (t -= (2.25 / 2.75)) * t + 0.9375);
+     } else {
+     return (7.5625 * (t -= (2.625 / 2.75)) * t + 0.984375);
+     }
 }
 
 function createBall() {
@@ -24,8 +25,6 @@ function createBall() {
     ball.setAttribute('r', (20) + '');
     return ball;
 }
-
-let duration = 2000;
 
 new Rx.Observable(observer => {
     const start = Date.now();
@@ -53,5 +52,5 @@ new Rx.Observable(observer => {
         ball.setAttribute('cy', y);
     })
     .finally(() => ball.remove())
-    .subscribe(e => console.log(e));
+    .subscribe();
 
