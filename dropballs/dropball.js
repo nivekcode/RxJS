@@ -7,15 +7,15 @@ let duration = 2000;
 const easeLinear = x => x;
 
 function easeOutBounce(t) {
-     if ((t) < (1 / 2.75)) {
-     return (7.5625 * t * t);
-     } else if (t < (2 / 2.75)) {
-     return (7.5625 * (t -= (1.5 / 2.75)) * t + 0.75);
-     } else if (t < (2.5 / 2.75)) {
-     return (7.5625 * (t -= (2.25 / 2.75)) * t + 0.9375);
-     } else {
-     return (7.5625 * (t -= (2.625 / 2.75)) * t + 0.984375);
-     }
+    if ((t) < (1 / 2.75)) {
+        return (7.5625 * t * t);
+    } else if (t < (2 / 2.75)) {
+        return (7.5625 * (t -= (1.5 / 2.75)) * t + 0.75);
+    } else if (t < (2.5 / 2.75)) {
+        return (7.5625 * (t -= (2.25 / 2.75)) * t + 0.9375);
+    } else {
+        return (7.5625 * (t -= (2.625 / 2.75)) * t + 0.984375);
+    }
 }
 
 function createBall() {
@@ -26,31 +26,31 @@ function createBall() {
     return ball;
 }
 
-new Rx.Observable(observer => {
-    const start = Date.now();
-    const animate = () => {
-        requestAnimationFrame(() => {
-            const diff = Date.now() - start
-            if (diff < duration) {
-                observer.next(diff / duration);
-            } else {
-                observer.next(1);
-                observer.complete();
-            }
-            animate();
-        })
-    }
-    animate();
-})
-    .map(t => ({
-        t,
-        x: easeLinear(t) * 600,
-        y: easeOutBounce(t) * 500
-    }))
-    .do(({x, y}) => {
-        ball.setAttribute('cx', x);
-        ball.setAttribute('cy', y);
+function dropBall() {
+    return new Rx.Observable(observer => {
+        const start = Date.now();
+        const animate = () => {
+            requestAnimationFrame(() => {
+                const diff = Date.now() - start
+                if (diff < duration) {
+                    observer.next(diff / duration);
+                } else {
+                    observer.next(1);
+                    observer.complete();
+                }
+                animate();
+            })
+        }
+        animate();
     })
-    .finally(() => ball.remove())
-    .subscribe();
-
+        .map(t => ({
+            t,
+            x: easeLinear(t) * 600,
+            y: easeOutBounce(t) * 500
+        }))
+        .do(({x, y}) => {
+            ball.setAttribute('cx', x);
+            ball.setAttribute('cy', y);
+        })
+        .finally(() => ball.remove())
+}
