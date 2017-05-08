@@ -30,15 +30,16 @@ function dropBall() {
     return new Rx.Observable(observer => {
         const start = Date.now();
         const animate = () => {
-            requestAnimationFrame(() => {
+            let id = requestAnimationFrame(() => {
                 const diff = Date.now() - start
                 if (diff < duration) {
                     observer.next(diff / duration);
+                    animate();
                 } else {
                     observer.next(1);
                     observer.complete();
+                    cancelAnimationFrame(id);
                 }
-                animate();
             })
         }
         animate();
