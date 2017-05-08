@@ -2,7 +2,6 @@
  * Created by kevinkreuzer on 05.05.17.
  */
 const svg = document.querySelector('svg')
-let ball = createBall()
 let duration = 2000;
 const easeLinear = x => x;
 
@@ -27,6 +26,7 @@ function createBall() {
 }
 
 function dropBall() {
+    let ball = createBall()
     return new Rx.Observable(observer => {
         const start = Date.now();
         const animate = () => {

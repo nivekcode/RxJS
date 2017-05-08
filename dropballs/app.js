@@ -5,8 +5,13 @@
 let dropButton = document.getElementById('drop-ball-button')
 const dropClicks$ = Rx.Observable.fromEvent(dropButton, 'click')
 
-dropClicks$.subscribe(
-    () => console.log('Drop ball')
-)
+/*
+Contact Map --> Drops new ball when the previous ball has finished
+Switch Map --> Removes the current ball when a new ball arrives
+Merge Map --> Allows you to have multiple balls at the same time
+ */
 
-dropBall().subscribe()
+dropClicks$
+    .mergeMap(_ => dropBall())
+    .subscribe()
+
