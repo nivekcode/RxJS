@@ -11,7 +11,8 @@ const speech$ = new Rx.Observable(observer => {
     recognition.onresult = function (event) {
         let found = Array.from(event.results[event.results.length -1])
             .find(result => {
-                return result.transcript.trim().includes('ball')
+                console.log(result.transcript)
+                return result.transcript.trim().includes('drop')
             })
         if (found) {
             observer.next()
