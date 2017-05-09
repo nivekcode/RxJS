@@ -24,7 +24,7 @@ const BALL_ACTIONS = {
     ENDED: 'ENDED'
 }
 
-Rx.Observable.merge(dropClicks$, mouseMoves$)
+Rx.Observable.merge(dropClicks$, mouseMoves$, speech$)
     .mergeMap(_ => dropBall(svg)
         .map(e => ({action: BALL_ACTIONS.MOVING}))
         .startWith({action: BALL_ACTIONS.STARTED})
