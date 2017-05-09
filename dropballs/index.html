@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reactive ball dropping</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<div class="container" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Drop balls</h1>
+            <button id="drop-ball-button"
+                    class="btn btn-primary"
+                    style="width: 100%">
+                Drop ball
+            </button>
+            <div class="card" style="margin-top: 20px">
+                <div class="card-header">
+                    <h3>Dropped balls</h3>
+                </div>
+                <div class="card-block">
+                    <h5 id="dropped-counter">0</h5>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 20px">
+                <div class="card-header">
+                    <h3>Finished balls</h3>
+                </div>
+                <div class="card-block">
+                    <h5 id="finished-counter">0</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <svg width="600px" height="500px" style="border: 1px solid black"></svg>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="../node_modules/rxjs/bundles/Rx.js"></script>
+<script type="text/javascript" src="dropball.js"></script>
+<script type="text/javascript" src="speechRecognition.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</html>
