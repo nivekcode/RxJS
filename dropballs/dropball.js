@@ -1,7 +1,6 @@
 /**
  * Created by kevinkreuzer on 05.05.17.
  */
-const svg = document.querySelector('svg')
 let duration = 2000;
 const easeLinear = x => x;
 
@@ -17,7 +16,7 @@ function easeOutBounce(t) {
     }
 }
 
-function createBall() {
+function createBall(svg) {
     const ball = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     ball.style = 'fill: red; stroke: none;';
     svg.appendChild(ball);
@@ -25,8 +24,8 @@ function createBall() {
     return ball;
 }
 
-function dropBall() {
-    let ball = createBall()
+function dropBall(svg) {
+    let ball = createBall(svg)
     return new Rx.Observable(observer => {
         const start = Date.now();
         const animate = () => {

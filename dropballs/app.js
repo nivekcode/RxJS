@@ -1,12 +1,13 @@
 /**
  * Created by kevinkreuzer on 08.05.17.
  */
-
+let svg = document.querySelector('svg')
 let dropButton = document.getElementById('drop-ball-button')
 let dropedCounter = document.getElementById('dropped-counter')
 let finishedCounter = document.getElementById('finished-counter')
-const dropClicks$ = Rx.Observable.fromEvent(dropButton, 'click')
 
+const dropClicks$ = Rx.Observable.fromEvent(dropButton, 'click')
+const mouseMoves$ = Rx.Observable.fromEvent(svg, 'mousemove')
 /*
  Contact Map --> Drops new ball when the previous ball has finished
  Switch Map --> Removes the current ball when a new ball arrives
@@ -23,8 +24,8 @@ const BALL_ACTIONS = {
     ENDED: 'ENDED'
 }
 
-dropClicks$
-    .mergeMap(_ => dropBall()
+Rx.Observable.merge(dropClicks$, mouseMoves$)
+    .mergeMap(_ => dropBall(svg)
         .map(e => ({action: BALL_ACTIONS.MOVING}))
         .startWith({action: BALL_ACTIONS.STARTED})
         .concat([{action: BALL_ACTIONS.ENDED}])
