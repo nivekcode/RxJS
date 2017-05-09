@@ -13,8 +13,8 @@ const dropClicks$ = Rx.Observable.fromEvent(dropButton, 'click')
  Merge Map --> Allows you to have multiple balls at the same time
  */
 const updateCounter = (state) => {
-    dropedCounter.innerHTML = `Dropped Balls: ${state.dropped}`
-    finishedCounter.innerHTML = `Finished: ${state.finished}`
+    dropedCounter.innerHTML = state.dropped
+    finishedCounter.innerHTML = state.finished
 }
 
 const BALL_ACTIONS = {
