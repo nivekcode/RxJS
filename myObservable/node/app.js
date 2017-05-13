@@ -1,7 +1,7 @@
 /**
  * Created by kevinkreuzer on 13.05.17.
  */
-const MyObservable = require('./myObservable')
+const MyObservable = require('./../myObservable')
 
 /*
  let test$ = MyObservable.create(function (observer) {

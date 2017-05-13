@@ -8,7 +8,7 @@ function MyObservable(subscribe) {
 MyObservable.prototype = {
     subscribe: function (onNext, onError, onComplete) {
         if (typeof onNext === 'function') {
-            this._subscribe({
+            return this._subscribe({
                 next: onNext,
                 error: onError || function () {
                 },
@@ -16,7 +16,7 @@ MyObservable.prototype = {
                 }
             })
         } else {
-            this._subscribe(onNext)
+            return this._subscribe(onNext)
         }
     }
 }
@@ -58,14 +58,14 @@ MyObservable.prototype.filter = function (filterFunction) {
     })
 }
 
-MyObservable.prototype.take = function(number){
+MyObservable.prototype.take = function (number) {
     var self = this
-    return new MyObservable(function (observer){
+    return new MyObservable(function (observer) {
         var counter = 0
         self.subscribe(
             item => {
                 counter += 1
-                if(counter <= number){
+                if (counter <= number) {
                     observer.next(item)
                 }
             },
@@ -75,4 +75,18 @@ MyObservable.prototype.take = function(number){
     })
 }
 
-module.exports = MyObservable
+MyObservable.fromEvent = function (domElement, eventName) {
+    return new MyObservable(function (observer) {
+        var handler = (e) => observer.next(e)
+        domElement.addEventListener(eventName, handler)
+        return {
+            unsubscribe: () => domElement.removeEventListener(eventName, handler)
+        }
+    })
+}
+
+var module = module || undefined
+if(module){
+    module.exports = MyObservable
+}
+
