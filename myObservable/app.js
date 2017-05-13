@@ -3,12 +3,15 @@
  */
 const MyObservable = require('./myObservable')
 
-let test$ = MyObservable.create(function (observer) {
-    observer.next('Batman')
-    observer.next('Aquaman')
-    observer.next('Spiderman')
-    observer.complete()
-});
+/*
+ let test$ = MyObservable.create(function (observer) {
+ observer.next('Batman')
+ observer.next('Aquaman')
+ observer.next('Spiderman')
+ observer.complete()
+ });
+ */
+let test$ = MyObservable.from(['Batman', 'Spiderman', 'Superman'])
 
 let observer = {
     next: e => console.log(e),

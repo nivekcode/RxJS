@@ -23,4 +23,13 @@ MyObservable.prototype = {
 
 MyObservable.create = (observer) => new MyObservable(observer)
 
+MyObservable.from = (iterable) => {
+    return new MyObservable((observer) => {
+        for (let i of iterable) {
+            observer.next(i)
+        }
+        observer.complete()
+    })
+}
+
 module.exports = MyObservable
