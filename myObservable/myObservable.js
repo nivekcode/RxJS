@@ -1,9 +1,15 @@
 /**
  * Created by kevinkreuzer on 12.05.17.
  */
-
 function MyObservable(subscribe) {
-    this.subscribe = subscribe
+    //Add a private field _subscribe
+    this._subscribe = subscribe
+}
+
+MyObservable.prototype = {
+    subscribe: function (observer) {
+        this._subscribe(observer);
+    }
 }
 
 let test$ = new MyObservable(function (observer) {
