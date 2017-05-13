@@ -19,10 +19,14 @@ let observer = {
     complete: () => console.info('I am done')
 }
 
-test$.subscribe(observer);
-test$.subscribe(
-    e => console.log(e),
-    err => console.error(err),
-    () => console.info('I am done')
-)
+test$
+    .map((hero) => `Mapped ${hero}`)
+    .subscribe(observer)
+/*
+ test$.subscribe(
+ e => console.log(e),
+ err => console.error(err),
+ () => console.info('I am done')
+ )
+ */
 

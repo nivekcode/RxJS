@@ -32,4 +32,17 @@ MyObservable.from = (iterable) => {
     })
 }
 
+MyObservable.prototype.map = function (mapFunction) {
+    var self = this;
+    return new MyObservable(function (observer) {
+        self.subscribe(
+            item => observer.next(mapFunction(item)),
+            _ => {
+                throw 'Error while Mapping'
+            },
+            _ => console.info('Done')
+        )
+    })
+}
+
 module.exports = MyObservable
