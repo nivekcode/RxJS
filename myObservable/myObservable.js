@@ -85,8 +85,20 @@ MyObservable.fromEvent = function (domElement, eventName) {
     })
 }
 
+MyObservable.interval = function (miliseconds) {
+    return new MyObservable(function (observer) {
+        let counter = 0
+        setInterval(() => {
+            observer.next(counter)
+            counter += 1
+        }, miliseconds),
+            _ => observer.error('An error occured during the take function'),
+            _ => observer.complete()
+    })
+}
+
 var module = module || undefined
-if(module){
+if (module) {
     module.exports = MyObservable
 }
 

@@ -11,6 +11,7 @@ const MyObservable = require('./../myObservable')
  observer.complete()
  });
  */
+
 let test$ = MyObservable.from(['Batman', 'Spiderman', 'Superman', 'Flash', 'Gren Lantern'])
 
 let observer = {
@@ -32,3 +33,10 @@ test$
  )
  */
 
+
+let interval$ = MyObservable.interval(1000)
+    .subscribe(
+        e => console.log(e),
+        err => console.error(err),
+        _ => console.info('Done')
+    )
