@@ -2,13 +2,22 @@
  * Created by kevinkreuzer on 12.05.17.
  */
 function MyObservable(subscribe) {
-    //Add a private field _subscribe
     this._subscribe = subscribe
 }
 
 MyObservable.prototype = {
-    subscribe: function (observer) {
-        this._subscribe(observer);
+    subscribe: function (onNext, onError, onComplete) {
+        if (typeof onNext === 'function') {
+            this._subscribe({
+                next: onNext,
+                error: onError || function () {
+                },
+                complete: onComplete || function () {
+                }
+            })
+        } else {
+            this._subscribe(onNext)
+        }
     }
 }
 
@@ -26,3 +35,8 @@ let observer = {
 }
 
 test$.subscribe(observer);
+test$.subscribe(
+    e => console.log(e),
+    err => console.error(err),
+    () => console.info('I am done')
+)
