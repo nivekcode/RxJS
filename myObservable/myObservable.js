@@ -8,7 +8,7 @@ function MyObservable(subscribe) {
 MyObservable.prototype = {
     subscribe: function (onNext, onError, onComplete) {
         if (typeof onNext === 'function') {
-            this._subscribe({
+            return this._subscribe({
                 next: onNext,
                 error: onError || function () {
                 },
@@ -16,7 +16,7 @@ MyObservable.prototype = {
                 }
             })
         } else {
-            this._subscribe(onNext)
+            return this._subscribe(onNext)
         }
     }
 }
@@ -32,4 +32,73 @@ MyObservable.from = (iterable) => {
     })
 }
 
-module.exports = MyObservable
+MyObservable.prototype.map = function (mapFunction) {
+    var self = this;
+    return new MyObservable(function (observer) {
+        self.subscribe(
+            item => observer.next(mapFunction(item)),
+            _ => observer.error('An error occured while mapping'),
+            _ => observer.complete()
+        )
+    })
+}
+
+MyObservable.prototype.filter = function (filterFunction) {
+    var self = this
+    return new MyObservable(function (observer) {
+        self.subscribe(
+            item => {
+                if (filterFunction(item)) {
+                    observer.next(item)
+                }
+            },
+            _ => observer.error('An error occured while filtering'),
+            _ => observer.complete()
+        )
+    })
+}
+
+MyObservable.prototype.take = function (number) {
+    var self = this
+    return new MyObservable(function (observer) {
+        var counter = 0
+        self.subscribe(
+            item => {
+                counter += 1
+                if (counter <= number) {
+                    observer.next(item)
+                }
+            },
+            _ => observer.error('An error occured during the take function'),
+            _ => observer.complete()
+        )
+    })
+}
+
+MyObservable.fromEvent = function (domElement, eventName) {
+    return new MyObservable(function (observer) {
+        var handler = (e) => observer.next(e)
+        domElement.addEventListener(eventName, handler)
+        return {
+            unsubscribe: () => domElement.removeEventListener(eventName, handler)
+        }
+    })
+}
+
+MyObservable.interval = function (miliseconds) {
+    return new MyObservable(function (observer) {
+        let counter = 0
+        setInterval(() => {
+            observer.next(counter)
+            counter += 1
+        }, miliseconds),
+            _ => observer.error('An error occured during the take function'),
+            _ => observer.complete()
+    })
+}
+
+var module = module || undefined
+if (module) {
+    module.exports = MyObservable
+}
+
