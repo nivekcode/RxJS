@@ -3,7 +3,7 @@
  */
 const MyObservable = require('./myObservable')
 
-let test$ = new MyObservable(function (observer) {
+let test$ = MyObservable.create(function (observer) {
     observer.next('Batman')
     observer.next('Aquaman')
     observer.next('Spiderman')

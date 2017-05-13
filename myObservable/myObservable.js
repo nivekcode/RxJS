@@ -21,4 +21,6 @@ MyObservable.prototype = {
     }
 }
 
+MyObservable.create = (observer) => new MyObservable(observer)
+
 module.exports = MyObservable
