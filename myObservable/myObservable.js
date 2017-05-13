@@ -58,4 +58,21 @@ MyObservable.prototype.filter = function (filterFunction) {
     })
 }
 
+MyObservable.prototype.take = function(number){
+    var self = this
+    return new MyObservable(function (observer){
+        var counter = 0
+        self.subscribe(
+            item => {
+                counter += 1
+                if(counter <= number){
+                    observer.next(item)
+                }
+            },
+            _ => observer.error('An error occured during the take function'),
+            _ => observer.complete()
+        )
+    })
+}
+
 module.exports = MyObservable

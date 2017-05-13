@@ -22,6 +22,7 @@ let observer = {
 test$
     .map(hero => `Mapped ${hero}`)
     .filter(hero => hero.includes('man'))
+    .take(2)
     .subscribe(observer)
 /*
  test$.subscribe(
