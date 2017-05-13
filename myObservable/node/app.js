@@ -12,6 +12,7 @@ const MyObservable = require('./../myObservable')
  });
  */
 
+/*
 let test$ = MyObservable.from(['Batman', 'Spiderman', 'Superman', 'Flash', 'Gren Lantern'])
 
 let observer = {
@@ -31,7 +32,6 @@ test$
  err => console.error(err),
  () => console.info('I am done')
  )
- */
 
 
 let interval$ = MyObservable.interval(1000)
@@ -40,3 +40,13 @@ let interval$ = MyObservable.interval(1000)
         err => console.error(err),
         _ => console.info('Done')
     )
+*/
+
+const intervalOne$ = MyObservable.interval(2500)
+const intervalTwo$ = MyObservable.interval(1000)
+
+MyObservable.merge(intervalOne$, intervalTwo$)
+    .subscribe(
+        e => console.log(e)
+    )
+

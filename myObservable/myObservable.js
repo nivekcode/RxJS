@@ -97,6 +97,36 @@ MyObservable.interval = function (miliseconds) {
     })
 }
 
+MyObservable.prototype.merge = function (...streams) {
+    var self = this
+    return new MyObservable(function (observer) {
+        self.subscribe(
+            e => observer.next(e),
+            _ => observer.error('An error occured during the take function'),
+            _ => observer.complete()
+        )
+        for (let stream of streams) {
+            stream.subscribe(
+                e => observer.next(e),
+                _ => observer.error('An error occured during the take function'),
+                _ => observer.complete()
+            )
+        }
+    })
+}
+
+MyObservable.merge = function (...streams) {
+    return new MyObservable(function (observer) {
+        for (let stream of streams) {
+            stream.subscribe(
+                e => observer.next(e),
+                _ => observer.error('An error occured during the take function'),
+                _ => observer.complete()
+            )
+        }
+    })
+}
+
 var module = module || undefined
 if (module) {
     module.exports = MyObservable
