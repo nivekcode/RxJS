@@ -37,10 +37,23 @@ MyObservable.prototype.map = function (mapFunction) {
     return new MyObservable(function (observer) {
         self.subscribe(
             item => observer.next(mapFunction(item)),
-            _ => {
-                throw 'Error while Mapping'
+            _ => observer.error('An error occured while mapping'),
+            _ => observer.complete()
+        )
+    })
+}
+
+MyObservable.prototype.filter = function (filterFunction) {
+    var self = this
+    return new MyObservable(function (observer) {
+        self.subscribe(
+            item => {
+                if (filterFunction(item)) {
+                    observer.next(item)
+                }
             },
-            _ => console.info('Done')
+            _ => observer.error('An error occured while filtering'),
+            _ => observer.complete()
         )
     })
 }

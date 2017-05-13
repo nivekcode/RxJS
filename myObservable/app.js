@@ -11,7 +11,7 @@ const MyObservable = require('./myObservable')
  observer.complete()
  });
  */
-let test$ = MyObservable.from(['Batman', 'Spiderman', 'Superman'])
+let test$ = MyObservable.from(['Batman', 'Spiderman', 'Superman', 'Flash', 'Gren Lantern'])
 
 let observer = {
     next: e => console.log(e),
@@ -20,7 +20,8 @@ let observer = {
 }
 
 test$
-    .map((hero) => `Mapped ${hero}`)
+    .map(hero => `Mapped ${hero}`)
+    .filter(hero => hero.includes('man'))
     .subscribe(observer)
 /*
  test$.subscribe(
