@@ -68,6 +68,9 @@ MyObservable.prototype.take = function (number) {
                 if (counter <= number) {
                     observer.next(item)
                 }
+                if (counter === number) {
+                    observer.complete()
+                }
             },
             _ => observer.error('An error occured during the take function'),
             _ => observer.complete()
@@ -126,6 +129,26 @@ MyObservable.merge = function (...streams) {
         }
     })
 }
+
+MyObservable.concat = function (...streams) {
+    return new MyObservable(function (observer) {
+        var iterator = streams[Symbol.iterator]()
+
+        let innerObserver = {
+            next: e => observer.next(e),
+            error: err => observer.error(err),
+            complete: () => {
+                let nextStream = iterator.next()
+                if (!nextStream.done) {
+                    var stream = nextStream.value
+                    stream.subscribe(observer)
+                }
+            }
+        }
+        iterator.next().value.subscribe(innerObserver)
+    })
+}
+
 
 var module = module || undefined
 if (module) {

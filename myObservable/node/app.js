@@ -42,11 +42,12 @@ let interval$ = MyObservable.interval(1000)
     )
 */
 
-const intervalOne$ = MyObservable.interval(2500)
-const intervalTwo$ = MyObservable.interval(1000)
+const intervalOne$ = MyObservable.interval(1000).take(4)
+const intervalTwo$ = MyObservable.interval(500).map(e => e + 4).take(4)
 
-MyObservable.merge(intervalOne$, intervalTwo$)
-    .subscribe(
-        e => console.log(e)
-    )
+MyObservable.merge(intervalOne$, intervalTwo$).subscribe(
+    e => console.log(e),
+    err => console.error(err),
+    _ => console.info('Done')
+)
 
