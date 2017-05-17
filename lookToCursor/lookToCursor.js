@@ -3,6 +3,7 @@
  */
 
 const body = document.querySelector('body')
+const image = document.querySelector('img')
 
 const windowWith = window.innerWidth;
 const windowHeight = window.innerHeight;
@@ -21,7 +22,7 @@ const DIRECTION_DESCRIPTIONS = {
 const getPositionDescription = (x, y) => {
     let ydescription = getYDescription(y)
     let xdescription = getXDescription(x)
-    return `${xdescription}_${ydescription}`
+    return `${ydescription}_${xdescription}`
 }
 
 const getYDescription = (y) => {
@@ -44,8 +45,9 @@ Rx.Observable.fromEvent(body, 'mousemove')
         y: mousemove.y
     }))
     .map(cursorposition => getPositionDescription(cursorposition.x, cursorposition.y))
+    .startWith('STRAIGHT_STRAIGHT')
     .subscribe(
-        e => console.log(e),
+        e => image.setAttribute('src', `images/${e}.jpg`),
         err => console.error(err),
         _ => console.info('Done')
     )
