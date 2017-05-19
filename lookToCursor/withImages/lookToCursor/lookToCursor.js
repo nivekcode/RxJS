@@ -47,7 +47,7 @@ Rx.Observable.fromEvent(body, 'mousemove')
     .map(cursorposition => getPositionDescription(cursorposition.x, cursorposition.y))
     .startWith('STRAIGHT_STRAIGHT')
     .subscribe(
-        e => image.setAttribute('src', `images/${e}.jpg`),
+        e => image.setAttribute('src', `../images/${e}.jpg`),
         err => console.error(err),
         _ => console.info('Done')
     )
