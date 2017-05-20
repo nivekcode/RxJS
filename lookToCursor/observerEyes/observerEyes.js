@@ -29,18 +29,16 @@ const redrawPupil = (pupil, cx, cy) => {
 }
 
 const calculatePupilPositon = (percentualXPosition, percentualYPosition) => {
-    console.log('PercentualX', percentualXPosition)
-    console.log('PercentualY', percentualYPosition)
-    let leftX = parseInt(LEFT_EYE_COORDINATES.x) + percentualXPosition
-    let rightX = parseInt(RIGHT_EYE_COORDINATES.x) + percentualXPosition
-    let leftY = parseInt(LEFT_EYE_COORDINATES.y) + percentualYPosition
-    let rightY = parseInt(LEFT_EYE_COORDINATES.y) + percentualYPosition
+    let leftX = parseInt(LEFT_EYE_COORDINATES.x - EYE_RADIUS / 2) + percentualXPosition
+    let rightX = parseInt(RIGHT_EYE_COORDINATES.x - EYE_RADIUS / 2) + percentualXPosition
+    let leftY = parseInt(LEFT_EYE_COORDINATES.y - EYE_RADIUS / 2) + percentualYPosition
+    let rightY = parseInt(LEFT_EYE_COORDINATES.y - EYE_RADIUS / 2) + percentualYPosition
     return {
         leftX, leftY, rightX, rightY
     }
 }
 
-const mousemoves$ = Rx.Observable.fromEvent(svg, 'mousemove')
+Rx.Observable.fromEvent(svg, 'mousemove')
     .map(e => {
         let percentualXPosition = 100 / SVG_WIDTH * e.x
         let percentualYPosition = 100 / SVG_HEIGHT * e.y
@@ -48,7 +46,6 @@ const mousemoves$ = Rx.Observable.fromEvent(svg, 'mousemove')
     })
     .subscribe(
         pupilPositions => {
-            console.log('Hier', pupilPositions)
             redrawPupil(leftPupil, pupilPositions.leftX, pupilPositions.leftY)
             redrawPupil(rightPupil, pupilPositions.rightX, pupilPositions.rightY)
         }
