@@ -4,7 +4,7 @@
 
 const incrementButton = document.getElementById('increment-button')
 const decrementButton = document.getElementById('decrement-button')
-const output = document.querySelector('output')
+const output = document.querySelector('h1')
 output.innerHTML = 0;
 const BUTTON_EVENTS = Object.freeze({
     INCREMENT: 'INCREMENT',
