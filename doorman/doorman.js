@@ -17,15 +17,13 @@ const arrivalPersons$ = Rx.Observable.interval(1500)
 const openDoor$ = Rx.Observable.fromEvent(doorHandle, 'mousedown')
 const closeDoor$ = Rx.Observable.fromEvent(doorHandle, 'mouseup')
 
-arrivalPersons$.subscribe(
-    character => console.dancer(`${character} tries to enter....`),
-    err => console.error(err),
-    _ => console.log('No more people interested in the party')
-)
-
 arrivalPersons$
+    .do(character => console.dancer(`${character} tries to enter....`))
     .windowToggle(openDoor$, () => closeDoor$)
     .mergeAll()
-    .subscribe(character => console.beer('Letting in ', character))
+    .subscribe(character => console.beer('Letting in ', character),
+        err => console.error(err),
+        () => console.log('No more people interested in the party')
+    )
 
 
