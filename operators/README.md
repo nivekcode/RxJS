@@ -8,6 +8,9 @@
 - **Fork join** Emits the last value of each observable after all completed
 - **Merge** Merges multiple observables together and emits a value as soon as it arrives
 - **Merge all** Flattens InnerObservables with the merge strategie
+- **Race** Uses the observable that emits the first
+- **Start with** Emits the given value first
+- **With latest from** Emits the latest value from another observable when the source emits
 
 ## Transformation
 - **mapTo** Maps an observable to a static value
