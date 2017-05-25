@@ -38,7 +38,7 @@
 
 ## Multicast
 - **publish** Shares a observable with its subscribers as soon as we call connect
-- **multicast** Shares an observable by providing the Subject. You can also provide a BehaviourSubject or a AsyncSubeject.
+- **multicast** Shares an observable by providing the Subject. You can also provide a BehaviourSubject or a AsyncSubject.
 - **share** Shares an observable with multiple subscribers
 
 ## Transformation
