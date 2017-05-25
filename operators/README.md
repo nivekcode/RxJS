@@ -41,6 +41,14 @@
 - **multicast** Shares an observable by providing the Subject. You can also provide a BehaviourSubject or a AsyncSubject.
 - **share** Shares an observable with multiple subscribers
 
+## Filter
+- **debounce** Discard emitted values that take less than the specified time between output - callback needs to return an Observable
+- **debounceTime** Discard emitted values that take less than the specified time
+- **distinctUntilChanged** Emits only if the currenvt value is different from the previous value
+- **filter** Emits all values that pass a tha criteria defined in the callback
+- **first** Emits the first value from an observable. Can have a projection function. For example to only emmit the first odd value. Furthermore there is alos a possibility to provide a default value
+- **ignoreElements** Ignores all elements and only emits errors and completions
+
 ## Transformation
 - **mapTo** Maps an observable to a static value
 
