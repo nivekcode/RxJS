@@ -69,6 +69,7 @@
 - **bufferToggle** Toggle on to catch emitted values from source, toggle off to emit buffered values as array.
 - **bufferWhen** Collect all values until closing selector emits, emit buffered values.
 - **expand** Recursively call provided function.
+- **groupBy** Group into observables based on provided value.
 
 ## Transformation
 - **mapTo** Maps an observable to a static value
