@@ -48,6 +48,17 @@
 - **filter** Emits all values that pass a tha criteria defined in the callback
 - **first** Emits the first value from an observable. Can have a projection function. For example to only emmit the first odd value. Furthermore there is alos a possibility to provide a default value
 - **ignoreElements** Ignores all elements and only emits errors and completions
+- **last** Emits the last values. This operator has the same possibilities like first, projection function, default value etc...
+- **sample** emit the most recent items emitted by an Observable within periodic time intervals
+- **single** emits a single value that passes a condition, emits an error if multiple vlaues passes that condition
+- **skip** skips the number of values provided by parameter
+- **skipUntil** skips value from the source observable until the second observable emitts
+- **skipWhile** skips emited elements that do not fulfill a condition
+- **take** The observable emits only the provided number of elements
+- **takeUntil** The observable emits value until the other observable emits values
+- **takeWhile** Emits values while the given condition is true
+- **throttle** Emit value only when duration, determined by provided function, has passed.
+- **throttleTime** Emit value only when duration has passed.
 
 ## Transformation
 - **mapTo** Maps an observable to a static value
