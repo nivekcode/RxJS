@@ -13,6 +13,11 @@
 - **With latest from** Emits the latest value from another observable when the source emits
 - **Zip** Emits first value after all observables emmited a first value. The second value is emmited as soon as all observables emmit a second value
 
+## Conditional
+
+- **defaultIfEmpty** Emits a default value if the observable completes and did not emmmit a value
+- **every** Emmits true of false if an observable completes or a item does not pass the condition
+
 ## Transformation
 - **mapTo** Maps an observable to a static value
 
