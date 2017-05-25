@@ -18,6 +18,19 @@
 - **defaultIfEmpty** Emits a default value if the observable completes and did not emmmit a value
 - **every** Emmits true of false if an observable completes or a item does not pass the condition
 
+## Creation
+
+- **Create** Creates on observable that executes the subscribe function you pass in
+- **empty** Creates an observable that does not emit a value and completes
+- **from** Creates an observable from an iterable
+- **fromEvent** Creates an observable from en Event
+- **fromPromise** Creates an observable from a promise
+- **interval** Creates an observable that emits a value in an interval. For example emits a value every second.
+- **of** Creates an observable from given values
+- **range** Creates an observable that emits all values in a given range
+- **throw** Creates an observable that throws an error
+- **timer** After a given duration it emits numbers in a interval sequence
+
 ## Transformation
 - **mapTo** Maps an observable to a static value
 
