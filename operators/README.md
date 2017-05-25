@@ -36,6 +36,11 @@
 - **retry** Retry an observable sequence a specific number of times if an error occures
 - **retryWhen** Retry an observable sequence on error based custom criteria
 
+## Multicast
+- **publish** Shares a observable with its subscribers as soon as we call connect
+- **multicast** Shares an observable by providing the Subject. You can also provide a BehaviourSubject or a AsyncSubject.
+- **share** Shares an observable with multiple subscribers
+
 ## Transformation
 - **mapTo** Maps an observable to a static value
 
