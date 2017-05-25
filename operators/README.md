@@ -31,6 +31,11 @@
 - **throw** Creates an observable that throws an error
 - **timer** After a given duration it emits numbers in a interval sequence
 
+## Error Handling
+- **catch** Handles errors in an Observable sequence. Returns a new observable
+- **retry** Retry an observable sequence a specific number of times if an error occures
+- **retryWhen** Retry an observable sequence on error based custom criteria
+
 ## Transformation
 - **mapTo** Maps an observable to a static value
 
