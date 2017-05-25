@@ -59,6 +59,16 @@
 - **takeWhile** Emits values while the given condition is true
 - **throttle** Emit value only when duration, determined by provided function, has passed.
 - **throttleTime** Emit value only when duration has passed.
+- **concatMap** Map values to inner observable, subscribe and emit in order.
+
+
+## Transformation Operators
+- **buffer** Collect output values until provided observable emits, emit as array.
+- **bufferCount** Collect emitted values until provided number is fulfilled, emit as array.
+- **bufferTime** Collect emitted values until provided time has passed, emit as array.
+- **bufferToggle** Toggle on to catch emitted values from source, toggle off to emit buffered values as array.
+- **bufferWhen** Collect all values until closing selector emits, emit buffered values.
+- **expand** Recursively call provided function.
 
 ## Transformation
 - **mapTo** Maps an observable to a static value
