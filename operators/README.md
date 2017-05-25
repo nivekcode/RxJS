@@ -70,6 +70,9 @@
 - **bufferWhen** Collect all values until closing selector emits, emit buffered values.
 - **expand** Recursively call provided function.
 - **groupBy** Group into observables based on provided value.
+- **map** Apply projection with each value from source.
+- **mergeMap** Flattens inner observables with the map strategy
+- **partition** Split one observable into two based on provided predicate.
 
 ## Transformation
 - **mapTo** Maps an observable to a static value
