@@ -11,6 +11,7 @@
 - **Race** Uses the observable that emits the first
 - **Start with** Emits the given value first
 - **With latest from** Emits the latest value from another observable when the source emits
+- **Zip** Emits first value after all observables emmited a first value. The second value is emmited as soon as all observables emmit a second value
 
 ## Transformation
 - **mapTo** Maps an observable to a static value
