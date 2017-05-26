@@ -73,6 +73,7 @@
 - **map** Apply projection with each value from source.
 - **mergeMap** Flattens inner observables with the map strategy
 - **partition** Split one observable into two based on provided predicate.
+- **pluck** Select a field of an object to emit
 
 ## Transformation
 - **mapTo** Maps an observable to a static value
