@@ -78,7 +78,17 @@
 - **switchMap** Map to observable, complete previous inner observable, emit values.
 - **window** Observable of values for window of time.
 - **windowCount** Observable of values from source, emitted each time provided count is fulfilled.
+- **windowTime** Observable of values collected from source for each provided time span.
+- **windowToggle** Collect and emit observable of values from source between opening and closing emission.
+- **windowWhen** Close window at provided time frame emitting observable of collected values from source.
 
-## Transformation
-- **mapTo** Maps an observable to a static value
+##Utility Operators
+- **do**Transparently perform actions or side-effects, such as logging.
+- **delay** Delay emitted values by given time.
+- **delayWhen** Delay emitted values determined by provided function.
+- **dematerialize** Turn notification objects into notification values.
+- **let** Let me have the whole observable.
+
+
+
 
