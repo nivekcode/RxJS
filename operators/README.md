@@ -74,6 +74,10 @@
 - **mergeMap** Flattens inner observables with the map strategy
 - **partition** Split one observable into two based on provided predicate.
 - **pluck** Select a field of an object to emit
+- **scan** takes a accumulated value and the current value and applies the provided function. It starts with the provided count
+- **switchMap** Map to observable, complete previous inner observable, emit values.
+- **window** Observable of values for window of time.
+- **windowCount** Observable of values from source, emitted each time provided count is fulfilled.
 
 ## Transformation
 - **mapTo** Maps an observable to a static value
