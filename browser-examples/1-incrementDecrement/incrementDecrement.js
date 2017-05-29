@@ -1,10 +1,9 @@
 /**
  * Created by kevinkreuzer on 05.05.17.
  */
-
 const incrementButton = document.getElementById('increment-button')
 const decrementButton = document.getElementById('decrement-button')
-const output = document.querySelector('h1')
+const output = document.querySelector('#counter')
 output.innerHTML = 0;
 const BUTTON_EVENTS = Object.freeze({
     INCREMENT: 'INCREMENT',
