@@ -7722,7 +7722,7 @@ a.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus {
     border-color: #000
 }
 
-svg {
+.footer-github-icon {
     fill: white;
     max-width: 50px;
     max-height: 50px;
