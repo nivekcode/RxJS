@@ -1,22 +1,8 @@
 /**
  * Created by kevinkreuzer on 08.05.17.
  */
-let svg = document.querySelector('svg')
-let dropButton = document.getElementById('drop-ball-button')
-let dropedCounter = document.getElementById('dropped-counter')
-let finishedCounter = document.getElementById('finished-counter')
-
 const dropClicks$ = Rx.Observable.fromEvent(dropButton, 'click')
 const mouseMoves$ = Rx.Observable.fromEvent(svg, 'mousemove')
-/*
- Contact Map --> Drops new ball when the previous ball has finished
- Switch Map --> Removes the current ball when a new ball arrives
- Merge Map --> Allows you to have multiple balls at the same time
- */
-const updateCounter = (state) => {
-    dropedCounter.innerHTML = state.dropped
-    finishedCounter.innerHTML = state.finished
-}
 
 const BALL_ACTIONS = {
     MOVING: 'MOVING',
@@ -24,6 +10,11 @@ const BALL_ACTIONS = {
     ENDED: 'ENDED'
 }
 
+/*
+ Contact Map --> Drops new ball when the previous ball has finished
+ Switch Map --> Removes the current ball when a new ball arrives
+ Merge Map --> Allows you to have multiple balls at the same time
+ */
 Rx.Observable.merge(dropClicks$, mouseMoves$, speech$)
     .mergeMap(_ => dropBall(svg)
         .map(e => ({action: BALL_ACTIONS.MOVING}))
