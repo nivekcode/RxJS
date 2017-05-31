@@ -3,12 +3,6 @@
  */
 
 const Observable = Rx.Observable
-
-const updatePoints = (id, totalPoints) => {
-    const domElment = document.querySelector(`#${id}-points`)
-    domElment.innerHTML = `${id} points: ${totalPoints}`
-}
-
 const addClicks = (color) => Observable
     .fromEvent(document.querySelector(`#${color}-button`), 'click')
     .mapTo(1)
