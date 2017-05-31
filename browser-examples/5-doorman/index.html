@@ -2,31 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ticks until click</title>
     <link rel="stylesheet" href="../../styles/styles.css"/>
+    <title>Doorman</title>
+    <style>
+        .console-log-div {
+            padding: 15px 10px;
+            border-radius: 5px;
+            width: 95% !important;
+        }
+    </style>
 </head>
 <body>
 <div class="jumbotron text-center">
-    <h1>Ticks until click</h1>
+    <h1>The Doorman</h1>
+    <button id="door-handle" class="btn btn-primary">Let them in</button>
 </div>
-<div class="container">
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h3 id="ticks">Ticking: 0</h3>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h3 id="passedClicks">Passed Ticks since last click: 0</h3>
-            </div>
-        </div>
-    </div>
+<div class="col-md-8 col-md-offset-2">
+    <fieldset id="console-log-div"></fieldset>
 </div>
-<footer class="footer text-center">
-    <a target="_blank" href="https://github.com/kreuzerk/RxJS/tree/develop/browser-examples/4-ticksUntilClick">
+<footer style="background: transparent" class="footer text-right">
+    <a target="_blank" href="https://github.com/kreuzerk/RxJS/tree/develop/browser-examples/5-doorman">
         <svg class="footer-github-icon " viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
              clip-rule="evenodd"
              stroke-linejoin="round" stroke-miterlimit="1.414">
@@ -36,5 +31,7 @@
 </footer>
 </body>
 <script type="text/javascript" src="../../node_modules/rxjs/bundles/Rx.js"></script>
-<script type="text/javascript" src="tickTillClick.js"></script>
+<script type="text/javascript" src="../../node_modules/harrypotter-names/dist/index.umd.min.js"></script>
+<script type="text/javascript" src="doorman.js"></script>
+<script type="text/javascript" src="../../node_modules/console-log-div/console-log-div.js"></script>
 </html>
