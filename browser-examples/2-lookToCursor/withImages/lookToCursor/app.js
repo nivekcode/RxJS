@@ -1,16 +1,6 @@
 /**
  * Created by kevinkreuzer on 17.05.17.
  */
-
-const body = document.querySelector('body')
-const image = document.querySelector('img')
-
-const windowWith = window.innerWidth;
-const windowHeight = window.innerHeight;
-
-console.log('Width', windowWith)
-console.log('Height', windowHeight)
-
 const DIRECTION_DESCRIPTIONS = {
     BOTTOM: 'BOTTOM',
     TOP: 'TOP',
@@ -47,7 +37,7 @@ Rx.Observable.fromEvent(body, 'mousemove')
     .map(cursorposition => getPositionDescription(cursorposition.x, cursorposition.y))
     .startWith('STRAIGHT_STRAIGHT')
     .subscribe(
-        e => image.setAttribute('src', `../images/${e}.jpg`),
+        imageName => changeImage(imageName) ,
         err => console.error(err),
         _ => console.info('Done')
     )
