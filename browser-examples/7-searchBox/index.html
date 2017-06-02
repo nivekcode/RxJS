@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <title>Search Term</title>
     <link rel="stylesheet" href="../../styles/styles.css"/>
+    <link rel="stylesheet" href="searchBox.css"/>
 </head>
 <body>
 <div class="jumbotron text-center">
-    <h1>Wikipedia search</h1>
+    <h1>Search for GitHub User</h1>
     <div class="col-md-4 col-md-offset-4">
         <input class="form-control" id="searchTermInput" type="text"/>
     </div>
 </div>
-<div>
-    <ul id="results"></ul>
+<div class="col-md-8 col-md-offset-2">
+    <ul class="list-group" id="results"></ul>
 </div>
 </body>
 <script type="text/javascript" src="../../node_modules/rxjs/bundles/Rx.js"></script>

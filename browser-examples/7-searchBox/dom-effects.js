@@ -4,24 +4,20 @@
 const searchTermInput = document.querySelector('#searchTermInput')
 const results = document.querySelector('#results')
 
-function appendGitHubUser(gitHubUser){
+function appendGitHubUsers(gitHubUsers){
+    results.innerHTML = ""
+    gitHubUsers.forEach(gitHubUser => appendGitHubUser(gitHubUser))
+}
+
+function appendGitHubUser(gitHubUser) {
     let li = createListItemWithImage(gitHubUser)
     results.appendChild(li)
 }
 
-function createListItemWithImage(gitHubUser){
+function createListItemWithImage(gitHubUser) {
     let li = document.createElement('li')
-    let image = createImage(gitHubUser.avatar_url)
-    li.innerHTML = gitHubUser.login;
-    li.appendChild(image)
+    li.innerHTML = `<img class="img-circle" src="${gitHubUser.avatar_url}"/> ${gitHubUser.login}`
+    li.setAttribute('class', 'list-group-item')
     return li
-}
-
-function createImage(imageUrl){
-    console.log('ImageUrL', imageUrl)
-    let image = document.createElement('img')
-    image.setAttribute('class', 'img')
-    image.setAttribute('src', imageUrl)
-    return image
 }
 

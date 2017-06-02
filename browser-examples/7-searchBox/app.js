@@ -12,9 +12,7 @@ input$
     .switchMap(searchTerm => searchWikipedia(searchTerm))
     .pluck('response', 'items')
     .subscribe(
-        githubUsers => {
-            githubUsers.forEach(githubUser => appendGitHubUser(githubUser))
-        },
+        githubUsers => appendGitHubUsers(githubUsers),
         err => console.error(err),
         _ => console.info('Done')
     )
