@@ -26,7 +26,6 @@
     "console-log-div": "^0.6.3",
     "events": "^1.1.1",
     "harrypotter-names": "^1.1.0",
-    "rx-dom": "^7.0.3",
     "rxjs": "^5.3.0"
   }
 }
