@@ -3,9 +3,9 @@
  */
 const Observable = Rx.Observable
 
-const mousedown$ = Observable.fromEvent(svg, 'mousedown')
-const mouseup$ = Observable.fromEvent(svg, 'mouseup')
-const mousemove$ = Observable.fromEvent(svg, 'mousemove')
+const mousedown$ = Observable.fromEvent(canvas, 'mousedown')
+const mouseup$ = Observable.fromEvent(canvas, 'mouseup')
+const mousemove$ = Observable.fromEvent(canvas, 'mousemove')
 
 mousedown$
     .mergeMap(mousedown => mousemove$

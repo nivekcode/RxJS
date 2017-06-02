@@ -1,25 +1,17 @@
 /**
  * Created by kevinkreuzer on 02.06.17.
  */
-let svg = document.querySelector('#draggableArea')
-svg.setAttribute('width', '1200')
-svg.setAttribute('height', '800')
-var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+let canvas = document.querySelector('#draggableArea')
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+const ctx = canvas.getContext('2d');
+const image = document.getElementById('source');
+const IMAGE_SIZE = 200
 
-function createRect(cx, cy) {
-    rect.setAttribute('x', cx);
-    rect.setAttribute('y', cy);
-    rect.setAttribute('height', '50');
-    rect.setAttribute('width', '50');
-    rect.setAttribute('fill', 'white');
-    svg.appendChild(rect);
+ctx.drawImage(image, canvas.width / 2 - (IMAGE_SIZE / 2), 50, IMAGE_SIZE, IMAGE_SIZE);
+
+function changeRectPosition(cx, cy) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(image, cx, cy, IMAGE_SIZE, IMAGE_SIZE);
 }
-
-function changeRectPosition(cx, cy){
-    rect.setAttribute('x', cx);
-    rect.setAttribute('y', cy);
-}
-
-createRect(50, 50)
-
 
