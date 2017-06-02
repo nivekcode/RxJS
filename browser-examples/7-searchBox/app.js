@@ -9,11 +9,12 @@ input$
     .filter(value => value.length >= 2)
     .debounceTime(500)
     .distinctUntilChanged()
+    .do(_ => showSpinner())
     .switchMap(searchTerm => searchWikipedia(searchTerm))
     .pluck('response', 'items')
+    .map(githubUsers => githubUsers.slice(0, 10))
     .subscribe(
         githubUsers => appendGitHubUsers(githubUsers),
         err => console.error(err),
         _ => console.info('Done')
     )
-
