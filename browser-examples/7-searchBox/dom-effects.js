@@ -4,8 +4,24 @@
 const searchTermInput = document.querySelector('#searchTermInput')
 const results = document.querySelector('#results')
 
-function appendListItem(gitHubUser){
-    let li = document.createElement('li')
-    li.innerHTML = gitHubUser.login;
+function appendGitHubUser(gitHubUser){
+    let li = createListItemWithImage(gitHubUser)
     results.appendChild(li)
 }
+
+function createListItemWithImage(gitHubUser){
+    let li = document.createElement('li')
+    let image = createImage(gitHubUser.avatar_url)
+    li.innerHTML = gitHubUser.login;
+    li.appendChild(image)
+    return li
+}
+
+function createImage(imageUrl){
+    console.log('ImageUrL', imageUrl)
+    let image = document.createElement('img')
+    image.setAttribute('class', 'img')
+    image.setAttribute('src', imageUrl)
+    return image
+}
+

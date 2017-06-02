@@ -13,7 +13,7 @@ input$
     .pluck('response', 'items')
     .subscribe(
         githubUsers => {
-            githubUsers.forEach(githubUser => appendListItem(githubUser))
+            githubUsers.forEach(githubUser => appendGitHubUser(githubUser))
         },
         err => console.error(err),
         _ => console.info('Done')
