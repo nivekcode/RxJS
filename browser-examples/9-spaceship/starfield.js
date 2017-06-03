@@ -4,7 +4,7 @@
 const NUMBER_OF_STARS = 250
 const SPEED = 50
 
-Rx.Observable.range(1, NUMBER_OF_STARS)
+const starfield$ = Rx.Observable.range(1, NUMBER_OF_STARS)
     .map(_ => ({
         x: parseInt(Math.random() * canvas.width),
         y: parseInt(Math.random() * canvas.height),
@@ -19,9 +19,4 @@ Rx.Observable.range(1, NUMBER_OF_STARS)
             })
             return stars
         })
-    )
-    .subscribe(
-        stars => paintStarts(stars),
-        err => console.error(err),
-        _ => console.info('Done')
     )
