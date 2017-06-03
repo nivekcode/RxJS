@@ -14,8 +14,7 @@ mousedown$
     .map(mousemove => ({x: mousemove.x, y: mousemove.y}))
     .subscribe(
         coordinates => {
-            console.log('Koordinaten', coordinates)
-            changeRectPosition(coordinates.x, coordinates.y - 250)
+            changeRectPosition(coordinates.x, coordinates.y - JUMBOTRON_HEIGHT)
         },
         err => console.error(err),
         _ => console.info('Done')
