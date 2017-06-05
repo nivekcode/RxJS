@@ -15,7 +15,6 @@ const ENEMIE_HEIGHT = 50
 const SHOT_SIZE = 20
 
 function paintStars(stars) {
-    paintBackground()
     ctx.fillStyle = 'white'
     stars.forEach(star => {
         ctx.fillRect(star.x, star.y, star.size, star.size)
@@ -56,6 +55,7 @@ function drawTriangle(x, y, width, color, direction){
 }
 
 function paint(actors) {
+    paintBackground()
     paintStars(actors.stars)
     paintSpaceship(actors.spaceship.x, actors.spaceship.y)
     paintEnemies(actors.enemies)

@@ -1,10 +1,7 @@
 /**
  * Created by kevinkreuzer on 04.06.17.
  */
-const SHOOTING_SPEED = 50
-
 const click$ = Rx.Observable.fromEvent(canvas, 'click')
-
 const shot$ = click$
     .withLatestFrom(spaceship$, (click, spaceship) => spaceship)
     .scan((shots, shot) => {

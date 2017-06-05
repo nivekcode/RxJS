@@ -6,6 +6,7 @@ Rx.Observable
         starfield$, spaceship$, enemies$, shot$,
         (stars, spaceship, enemies, shot) => ({stars, spaceship, enemies, shot})
     )
+    .sampleTime(50)
     .subscribe(
         actors => paint(actors)
     )
