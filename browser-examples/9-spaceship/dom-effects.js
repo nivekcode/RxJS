@@ -12,7 +12,6 @@ const SPACESHIP_WIDTH = 100
 const SPACESHIP_HEIGHT = 150
 const ENEMIE_WIDTH = 50
 const ENEMIE_HEIGHT = 50
-const SHOT_SIZE = 20
 
 function paintStars(stars) {
     ctx.fillStyle = 'white'
@@ -38,7 +37,6 @@ function paintEnemies(enemies) {
 
 function paintShot(shots) {
     shots.forEach(shot => {
-        console.log('Shot', shot)
         shot.y -= 15
         drawTriangle(shot.x, shot.y, 10, 'red', 'up')
     })

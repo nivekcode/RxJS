@@ -4,6 +4,7 @@
 const click$ = Rx.Observable.fromEvent(canvas, 'click')
 const shot$ = click$
     .withLatestFrom(spaceship$, (click, spaceship) => spaceship)
+    .distinctUntilChanged()
     .scan((shots, shot) => {
         shots.push(shot)
         return shots
