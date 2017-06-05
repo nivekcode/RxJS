@@ -3,8 +3,8 @@
  */
 Rx.Observable
     .combineLatest(
-        starfield$, spaceship$, enemies$,
-        (stars, spaceship, enemies) => ({stars, spaceship, enemies})
+        starfield$, spaceship$, enemies$, shot$,
+        (stars, spaceship, enemies, shot) => ({stars, spaceship, enemies, shot})
     )
     .subscribe(
         actors => paint(actors)
