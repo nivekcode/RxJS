@@ -13,11 +13,19 @@ function getRandomNumberForRange(minimum, maximum) {
 
 const enemies$ = Rx.Observable
     .interval(ENEMIE_FREQUENCY)
-    .map(tick => ({
-        x: Math.random() * canvas.width,
-        y: 50
-    }))
-    .scan((enemies, newEnemie) => {
+    .scan((enemies) => {
+        let newEnemie = {
+            x: Math.random() * canvas.width,
+            y: 50,
+            shots: []
+        }
+
+        Rx.Observable.interval(1500)
+            .mergeMap(tick => Rx.Observable.timer(getRandomNumberForRange(0, 5000)))
+            .subscribe(
+                _ => newEnemie.shots.push({x: newEnemie.x, y: newEnemie.y})
+            )
+
         enemies.push(newEnemie)
         return enemies
     }, [])

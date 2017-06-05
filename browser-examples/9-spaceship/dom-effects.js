@@ -32,6 +32,14 @@ function paintSpaceship(cx, cy) {
 function paintEnemies(enemies) {
     enemies.forEach(enemie => {
         ctx.drawImage(enemieImage, enemie.x, enemie.y, ENEMIE_WIDTH, ENEMIE_HEIGHT);
+        paintEnemieShots(enemie.shots)
+    })
+}
+
+function paintEnemieShots(shots){
+    shots.forEach(shot => {
+        shot.y += 15
+        drawTriangle(shot.x, shot.y, 10, 'blue', 'down')
     })
 }
 
