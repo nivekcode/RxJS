@@ -1,0 +1,45 @@
+<html>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Doodle Polls</h1>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <input id="searchInput" class="form-control" type="text" placeholder="Search by name or title"/>
+            </div>
+        </div>
+        <div class="row top-margin">
+            <div class="col-md-6">
+                <label id="participantFilterLabel" for="participantSlider"></label>
+                <input id="participantSlider" type="range" defaultValue="0" min="0" max="10" value="0" step="1"/>
+            </div>
+            <div class="col-md-6">
+                <label id="inviteesFilterLabel" for="inviteesSlider"></label>
+                <input id="inviteesSlider" type="range" defaultValue="0" min="0" max="10" value="0" step="1"/>
+            </div>
+        </div>
+        <div class="row top-margin">
+            <div class="col-md-6">
+                <label for="typeFilters" class="block">Typefilter</label>
+                <div id="typeFilters" class="btn-group btn-group-justified" role="group"
+                     aria-label="Justified button group">
+                    <a id="textTypeButton" class="btn btn-default" role="button">Text</a>
+                    <a id="dateTypeButton" class="btn btn-default" role="button">Date</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="typeFilters">Filter by particant name</label>
+                <input id="participantNameInput" class="form-control" type="text" placeholder="Participantname"/>
+            </div>
+        </div>
+        <div class="row">
+            <h5 class="pull-right" id="searchResults">Test</h5>
+        </div>
+    </div>
+    <div id="polls">
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="bundle.js"></script>
+</html>
