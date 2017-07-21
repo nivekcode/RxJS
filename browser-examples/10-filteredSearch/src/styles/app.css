@@ -1,0 +1,25 @@
+.inline {
+    display: inline
+}
+
+.no-top-margin {
+    margin-top: 0px;
+}
+
+.top-margin {
+    margin-top: 20px;
+}
+
+.gray-content {
+    color: gray;
+}
+
+.block {
+    display: block
+}
+
+.icon {
+    margin-left: 5px;
+    font-size: 18px;
+    margin-right: 30px;
+}
