@@ -75,6 +75,17 @@ function collision(target1, target2) {
         (target1.y > target2.y - 40 && target1.y < target2.y + 40);
 }
 
+function gameOver(ship, enemies) {
+    return enemies.some(function (enemy) {
+        if (collision(ship, enemy)) {
+            return true
+        }
+        return enemy.shots.some(function (shot) {
+            return collision(ship, shot)
+        })
+    })
+}
+
 function paint(actors) {
     paintBackground()
     paintStars(actors.stars)
