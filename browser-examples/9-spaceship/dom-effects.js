@@ -12,6 +12,7 @@ const SPACESHIP_WIDTH = 100
 const SPACESHIP_HEIGHT = 150
 const ENEMIE_WIDTH = 50
 const ENEMIE_HEIGHT = 50
+const SCORE_INCREASE = 10
 
 function paintStars(stars) {
     ctx.fillStyle = 'white'
@@ -50,6 +51,7 @@ function paintShot(shots, enemies) {
         for (let l = 0; l < enemies.length; l++) {
             const enemy = enemies[l]
             if (!enemy.isDead && collision(shot, enemy)) {
+                scoreSubject.next(SCORE_INCREASE)
                 enemy.isDead = true
                 shot.x = shot.y = -100
                 break;
@@ -86,11 +88,18 @@ function gameOver(ship, enemies) {
     })
 }
 
+function paintScore(score) {
+    ctx.fillStyle = '#ffffff'
+    ctx.font = 'bold 26px sans-serif'
+    ctx.fillText('Score: ' + score, 40, 43)
+}
+
 function paint(actors) {
     paintBackground()
     paintStars(actors.stars)
     paintSpaceship(actors.spaceship.x, actors.spaceship.y)
     paintEnemies(actors.enemies)
     paintShot(actors.shot, actors.enemies)
+    paintScore(actors.score)
 }
 

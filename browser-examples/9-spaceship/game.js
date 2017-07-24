@@ -3,8 +3,8 @@
  */
 Rx.Observable
     .combineLatest(
-        starfield$, spaceship$, enemies$, shot$,
-        (stars, spaceship, enemies, shot) => ({stars, spaceship, enemies, shot})
+        starfield$, spaceship$, enemies$, shot$, score$,
+        (stars, spaceship, enemies, shot, score) => ({stars, spaceship, enemies, shot, score})
     )
     .sampleTime(50)
     .takeWhile(function (actors) {
