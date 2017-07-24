@@ -33,8 +33,8 @@ function paintEnemies(enemies) {
     enemies.forEach(enemy => {
         if (!enemy.isDead) {
             ctx.drawImage(enemieImage, enemy.x, enemy.y, ENEMIE_WIDTH, ENEMIE_HEIGHT);
+            paintEnemieShots(enemy.shots)
         }
-        paintEnemieShots(enemy.shots)
     })
 }
 
@@ -47,9 +47,9 @@ function paintEnemieShots(shots) {
 
 function paintShot(shots, enemies) {
     shots.forEach(shot => {
-        for (let l = 0; l < enemies.length; l++){
+        for (let l = 0; l < enemies.length; l++) {
             const enemy = enemies[l]
-            if(!enemy.isDead && collision(shot, enemy)){
+            if (!enemy.isDead && collision(shot, enemy)) {
                 enemy.isDead = true
                 shot.x = shot.y = -100
                 break;
