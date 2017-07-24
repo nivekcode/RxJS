@@ -3,7 +3,7 @@
  */
 const canvas = document.createElement('canvas')
 const spaceship = document.getElementById('spaceship');
-const enemieImage = document.getElementById('enemie');
+const enemieImage = document.getElementById('enemy');
 const ctx = canvas.getContext('2d')
 document.body.appendChild(canvas)
 canvas.width = window.innerWidth
