@@ -30,34 +30,49 @@ function paintSpaceship(cx, cy) {
 }
 
 function paintEnemies(enemies) {
-    enemies.forEach(enemie => {
-        ctx.drawImage(enemieImage, enemie.x, enemie.y, ENEMIE_WIDTH, ENEMIE_HEIGHT);
-        paintEnemieShots(enemie.shots)
+    enemies.forEach(enemy => {
+        if (!enemy.isDead) {
+            ctx.drawImage(enemieImage, enemy.x, enemy.y, ENEMIE_WIDTH, ENEMIE_HEIGHT);
+        }
+        paintEnemieShots(enemy.shots)
     })
 }
 
-function paintEnemieShots(shots){
+function paintEnemieShots(shots) {
     shots.forEach(shot => {
         shot.y += 15
         drawTriangle(shot.x, shot.y, 10, 'blue', 'down')
     })
 }
 
-function paintShot(shots) {
+function paintShot(shots, enemies) {
     shots.forEach(shot => {
+        for (let l = 0; l < enemies.length; l++){
+            const enemy = enemies[l]
+            if(!enemy.isDead && collision(shot, enemy)){
+                enemy.isDead = true
+                shot.x = shot.y = -100
+                break;
+            }
+        }
         shot.y -= 15
         drawTriangle(shot.x, shot.y, 10, 'red', 'up')
     })
 }
 
-function drawTriangle(x, y, width, color, direction){
+function drawTriangle(x, y, width, color, direction) {
     ctx.fillStyle = color
     ctx.beginPath()
     ctx.moveTo(x - width, y)
-    ctx.lineTo(x, direction === 'up' ?  y - width : y + width)
+    ctx.lineTo(x, direction === 'up' ? y - width : y + width)
     ctx.lineTo(x + width, y)
     ctx.lineTo(x - width, y)
     ctx.fill()
+}
+
+function collision(target1, target2) {
+    return (target1.x > target2.x - 40 && target1.x < target2.x + 40) &&
+        (target1.y > target2.y - 40 && target1.y < target2.y + 40);
 }
 
 function paint(actors) {
@@ -65,6 +80,6 @@ function paint(actors) {
     paintStars(actors.stars)
     paintSpaceship(actors.spaceship.x, actors.spaceship.y)
     paintEnemies(actors.enemies)
-    paintShot(actors.shot)
+    paintShot(actors.shot, actors.enemies)
 }
 
