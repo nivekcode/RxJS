@@ -10,7 +10,7 @@ input$
     .debounceTime(500)
     .distinctUntilChanged()
     .do(_ => showSpinner())
-    .switchMap(searchTerm => searchWikipedia(searchTerm))
+    .switchMap(searchTerm => searchGitHubUsers(searchTerm))
     .pluck('response', 'items')
     .map(githubUsers => githubUsers.slice(0, 10))
     .subscribe(
@@ -18,3 +18,7 @@ input$
         err => console.error(err),
         _ => console.info('Done')
     )
+
+
+
+
