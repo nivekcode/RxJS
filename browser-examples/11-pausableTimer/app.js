@@ -1,4 +1,4 @@
-const awesomeDiv = document.getElementById("awesomeDiv")
+const awesomeDiv = document.getElementById("awesomeDiv1")
 const mouseenter$ = Rx.Observable.fromEvent(awesomeDiv, 'mouseenter')
     .mapTo(true)
 const mouseleave$ = Rx.Observable.fromEvent(awesomeDiv, 'mouseleave')
@@ -6,7 +6,7 @@ const mouseleave$ = Rx.Observable.fromEvent(awesomeDiv, 'mouseleave')
 const hover$ = Rx.Observable.merge(mouseenter$, mouseleave$)
     .startWith(false)
 
-function createPausableTimer(){
+function createPausableTimer() {
     let time = 0;
 
     return hover$.switchMap(pausable => {
