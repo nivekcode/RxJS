@@ -1,35 +1,42 @@
-const awesomeDiv = document.getElementById("awesomeDiv1")
-const mouseenter$ = Rx.Observable.fromEvent(awesomeDiv, 'mouseenter')
+/*
+const mouseenter$ = Rx.Observable.fromEvent(awesomeDiv1, 'mouseenter')
     .mapTo(true)
-const mouseleave$ = Rx.Observable.fromEvent(awesomeDiv, 'mouseleave')
+const mouseleave$ = Rx.Observable.fromEvent(awesomeDiv2, 'mouseleave')
     .mapTo(false)
 const hover$ = Rx.Observable.merge(mouseenter$, mouseleave$)
     .startWith(false)
+    */
 
-function createPausableTimer() {
+function createPausableTimer(id) {
     let time = 0;
 
-    return hover$.switchMap(pausable => {
-            if (pausable) {
+    return hover$.switchMap(hoveredId => {
+            if (hoveredId === id) {
                 return Rx.Observable.empty()
             }
             return Rx.Observable.interval(100)
-                .map(() => time++)
+                .do(() => time++)
+                .mapTo(id)
                 .take(30 - time)
                 .materialize()
         }
     )
+        .dematerialize()
+        .last()
 }
 
 const observer = {
-    next: tick => console.log('Ticking', tick),
+    next: id => hideAwesomeDiv(id),
     error: err => console.error('An error occured'),
     complete: () => console.log('Timer exceeded')
 }
 
-createPausableTimer()
-    .dematerialize()
-    .last()
+Rx.Observable.merge(
+    createPausableTimer(1),
+    Rx.Observable.timer(1000).switchMap(() => createPausableTimer(2)),
+    Rx.Observable.timer(2000).switchMap(() => createPausableTimer(3)),
+    Rx.Observable.timer(3000).switchMap(() => createPausableTimer(4))
+)
     .subscribe(observer)
 
 /*
