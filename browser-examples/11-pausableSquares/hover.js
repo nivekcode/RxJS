@@ -14,3 +14,21 @@ const hover$ = Rx.Observable.merge(
     createHoverStream(awesomeDiv4, 4)
 )
     .startWith(0)
+
+function createPausableTimer(id) {
+    let time = 0;
+
+    return hover$.switchMap(hoveredId => {
+            if (hoveredId === id) {
+                return Rx.Observable.empty()
+            }
+            return Rx.Observable.interval(100)
+                .do(() => time++)
+                .mapTo(id)
+                .take(30 - time)
+                .materialize()
+        }
+    )
+        .dematerialize()
+        .last()
+}
