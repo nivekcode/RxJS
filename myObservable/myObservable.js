@@ -51,6 +51,24 @@ class MyObservable {
             }
         })
     }
+
+    filter(projection) {
+        const self = this;
+        return new MyObservable(function subscribe(observer) {
+                const subscription = self.subscribe(
+                    item => {
+                        if (projection(item)) {
+                            observer.next(item)
+                        }
+                    },
+                    error => observer.error(error),
+                    complete => observer.complete(complete))
+                return {
+                    unsubscribe: () => subscription.unsubscribe()
+                }
+            }
+        )
+    }
 }
 
 module.exports = MyObservable

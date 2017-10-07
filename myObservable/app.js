@@ -9,6 +9,7 @@ const observer = {
 }
 
 const tickSubscription = tickObservable
+    .filter(item => item % 2 === 0)
     .map(item => 'Item ' + item + ' is arriving')
     .subscribe(observer)
 
