@@ -1,10 +1,10 @@
 class MyObservable {
 
     constructor(subscribe) {
-        this.subscribe = subscribe
+        this._subscribe = subscribe
     }
 
-    static subscribe(next, error, complete) {
+    subscribe(next, error, complete) {
         let observer;
         if (typeof next === 'function') {
             observer = {
@@ -14,9 +14,10 @@ class MyObservable {
                 error: complete || function () {
                 }
             }
+        } else {
+            observer = next;
         }
-        observer = next;
-        return this.subscribe(observer);
+        return this._subscribe(observer);
     }
 
     static create(subscribe) {
@@ -33,6 +34,20 @@ class MyObservable {
             }, milliseconds)
             return {
                 unsubscribe: () => clearInterval(interval)
+            }
+        })
+    }
+
+    map(projection) {
+        const self = this;
+        return new MyObservable(function subscribe(observer) {
+            const subscription = self.subscribe(
+                item => observer.next(projection(item)),
+                error => observer.error,
+                complete => observer.complete()
+            )
+            return {
+                unsubscribe: () => subscription.unsubscribe()
             }
         })
     }
