@@ -152,6 +152,30 @@ class MyObservable {
             }
         })
     }
+
+    mergeMap(projection) {
+        const self = this
+        let subscriptions = [];
+        return new MyObservable(function subscribe(observer) {
+            const subscription = self.subscribe(
+                item => {
+                    const newObservable = projection(item)
+                    subscriptions.push(newObservable.subscribe(
+                        item => observer.next(item),
+                        error => observer.error(err),
+                        complete => observer.complete(complete)
+                    ))
+                }
+            )
+
+            return {
+                unsubscribe: () => {
+                    subscriptions.forEach(sub => sub.unsubscribe())
+                    subscription.unsubscribe()
+                }
+            }
+        })
+    }
 }
 
 module.exports = MyObservable
