@@ -8,6 +8,7 @@ const observer = {
     complete: _ => console.log('Done')
 }
 
+/*
 const tickSubscription = tickObservable
     .filter(item => item % 2 === 0)
     .map(item => 'Item ' + item + ' is arriving')
@@ -16,5 +17,8 @@ const tickSubscription = tickObservable
 setTimeout(() => {
     tickSubscription.unsubscribe()
 }, 10000)
+*/
 
-
+tickObservable
+    .takeRandomly(0, 10)
+    .subscribe(observer)
