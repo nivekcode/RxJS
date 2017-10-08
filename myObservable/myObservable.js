@@ -11,7 +11,7 @@ class MyObservable {
                 next,
                 error: error || function () {
                 },
-                error: complete || function () {
+                complete: complete || function () {
                 }
             }
         } else {
@@ -172,6 +172,50 @@ class MyObservable {
                 unsubscribe: () => {
                     subscriptions.forEach(sub => sub.unsubscribe())
                     subscription.unsubscribe()
+                }
+            }
+        })
+    }
+
+    concatMap(projection) {
+        const self = this
+        let counter = 0
+        let observables = []
+        let subscriptions = []
+        let isCurrentFinished = true
+
+        return new MyObservable(function subscribe(observer) {
+
+            const processCurrentObservable = () => {
+                const currentObservable = observables[counter]
+                isCurrentFinished = false
+                subscriptions.push(currentObservable.subscribe(
+                    item => observer.next(item),
+                    error => observer.error(error),
+                    complete => {
+                        counter++
+                        observer.complete(complete)
+                        isCurrentFinished = true
+                        processCurrentObservable()
+                    }
+                ))
+            }
+
+            const subscription = self.subscribe(
+                item => {
+                    observables.push(projection(item))
+                    if (isCurrentFinished) {
+                        processCurrentObservable()
+                    }
+                },
+                error => observer.error(error),
+                complete => observer.complete(complete)
+            )
+
+            return {
+                unsubscribe: () => {
+                    subscription.unsubscribe()
+                    subscriptions.forEach(sub => sub.unsubscribe())
                 }
             }
         })

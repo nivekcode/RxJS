@@ -20,5 +20,5 @@ setTimeout(() => {
 */
 
 tickObservable
-    .takeRandomly(0, 10)
+    .take(10)
     .subscribe(observer)
