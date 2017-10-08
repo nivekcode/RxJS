@@ -113,6 +113,24 @@ class MyObservable {
         return this.take(randomNumber)
     }
 
+    do(projection) {
+        const self = this
+        return new MyObservable(function subscribe(observer) {
+            const subscription = self.subscribe(
+                item => {
+                    projection(item)
+                    observer.next(item)
+                },
+                error => observer.error(error),
+                complete => observer.complete(complete)
+            )
+
+            return {
+                unsubscribe: () => subscription.unsubscribe()
+            }
+        })
+    }
+
     static fromEvent(domElement, eventName) {
         return new MyObservable(function subscribe(observer) {
             const handler = function (event) {

@@ -20,5 +20,7 @@ setTimeout(() => {
 */
 
 tickObservable
-    .take(10)
+    .do(console.log)
+    .map(value => 'Value ' + value + ' arrives')
+    .take(5)
     .subscribe(observer)
