@@ -26,6 +26,12 @@ class MyObservable {
         })
     }
 
+    static empty(){
+        return new Observable(function subscribe(observer){
+            observer.complete()
+        })
+    }
+
     static tick(milliseconds) {
         return new MyObservable(function subscribe(observer) {
             let counter = 0;
