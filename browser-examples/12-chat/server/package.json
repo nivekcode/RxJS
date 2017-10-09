@@ -1,0 +1,15 @@
+{
+  "name": "chat-server",
+  "version": "1.0.0",
+  "description": "A simple chat server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Kevin Kreuzer",
+  "license": "ISC",
+  "dependencies": {
+    "websocket": "^1.0.24"
+  }
+}
