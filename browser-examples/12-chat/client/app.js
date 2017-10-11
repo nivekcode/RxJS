@@ -14,9 +14,10 @@ const send$ = Rx.Observable.fromEvent(sendButton, 'click')
 const observer = {
     next: response => {
         const messages = response.data
+        chat.innerHTML = ''
         messages.forEach(message => {
             const messageString = `${message.username}: ${message.message}`
-            chat.innerHTML = chat.innerHTML + messageString + '<br />';
+            chat.innerHTML += messageString + '\n';
         })
     },
     error: () => console.error(error),
