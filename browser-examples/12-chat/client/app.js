@@ -8,5 +8,10 @@ const observer = {
 
 const socket$ = new Rx.Observable.webSocket('ws://localhost:1337');
 socket$.subscribe(observer);
-socket$.next('Hallo')
+
+const newMessage = {
+    username: 'Something',
+    text: 'test'
+}
+socket$.next(JSON.stringify(newMessage))
 
