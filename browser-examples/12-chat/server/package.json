@@ -1,0 +1,16 @@
+{
+  "name": "chat-server",
+  "version": "1.0.0",
+  "description": "A simple chat server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Kevin Kreuzer",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^1.12.1",
+    "websocket": "^1.0.24"
+  }
+}

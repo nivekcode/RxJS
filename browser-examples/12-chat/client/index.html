@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat application</title>
+    <link rel="stylesheet" href="../../../styles/styles.css"/>
+</head>
+<body>
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1 class="text-center">Chat application</h1>
+            <div>
+                <div>
+                    <label for="username">Enter your username</label>
+                    <input id="username" class="form-control" type="text" value="tim"/>
+                </div>
+                <div>
+                    <label for="message">Enter your message</label>
+                    <input id="message" class="form-control" type="text"/>
+                </div>
+                <button type="button" id="sendButton" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-md-offset-3">
+    <textarea id="chat" rows="20" cols="95" readonly></textarea>
+</div>
+
+
+</body>
+<script type="text/javascript" src="../../../node_modules/rxjs/bundles/Rx.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</html>
