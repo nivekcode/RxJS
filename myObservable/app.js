@@ -20,7 +20,8 @@ setTimeout(() => {
 */
 
 tickObservable
-    .do(console.log)
-    .map(value => 'Value ' + value + ' arrives')
     .take(5)
+    .scan(function (total, value) {
+        return total + value
+    }, 0)
     .subscribe(observer)

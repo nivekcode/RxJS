@@ -26,8 +26,8 @@ class MyObservable {
         })
     }
 
-    static empty(){
-        return new Observable(function subscribe(observer){
+    static empty() {
+        return new Observable(function subscribe(observer) {
             observer.complete()
         })
     }
@@ -241,6 +241,24 @@ class MyObservable {
                     subscription.unsubscribe()
                     subscriptions.forEach(sub => sub.unsubscribe())
                 }
+            }
+        })
+    }
+
+    scan(projection, startvalue) {
+        const self = this
+        let total = startvalue
+        return new MyObservable(function subscribe(observer) {
+            const subscription = self.subscribe(
+                next => {
+                    total = projection(total, next)
+                    observer.next(total)
+                },
+                error => observer.error(error),
+                complete => observer.complete(complete)
+            )
+            return {
+                unsubscribe: () => subscription.unsubscribe()
             }
         })
     }
