@@ -19,9 +19,19 @@ setTimeout(() => {
 }, 10000)
 */
 
+/*
 tickObservable
     .take(5)
     .scan(function (total, value) {
         return total + value
     }, 0)
     .subscribe(observer)
+    */
+
+const tickObservableOne = MyObservable.tick(1000).mapTo('Tick from first observable')
+const tickObservableTwo = MyObservable.tick(1500).mapTo('Tick from second observable')
+
+const subscription = MyObservable.merge(tickObservableOne, tickObservableTwo)
+    .subscribe(observer)
+
+setTimeout(subscription.unsubscribe, 5000)

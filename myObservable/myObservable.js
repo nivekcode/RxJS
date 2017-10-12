@@ -262,6 +262,24 @@ class MyObservable {
             }
         })
     }
+
+    static merge(...observables) {
+        const subscriptions = [];
+        return new MyObservable(function subscribe(observer) {
+            observables.forEach(observable => {
+                subscriptions.push(observable.subscribe(
+                    next => observer.next(next),
+                    error => observer.error(error),
+                    complete => observer.complete(complete)
+                ))
+            })
+            return {
+                unsubscribe: () => {
+                    subscriptions.forEach(subscription => subscription.unsubscribe())
+                }
+            }
+        })
+    }
 }
 
 module.exports = MyObservable
