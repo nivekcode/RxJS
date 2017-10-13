@@ -1,0 +1,9 @@
+<section class="todoapp">
+    <header class="header">
+        <todo-header></todo-header>
+        <todo-input #todoInput></todo-input>
+    </header>
+    <todo-list [newTodos]="this.todoInput.getTodoStream()"></todo-list>
+</section>
+<todo-footer></todo-footer>
+
