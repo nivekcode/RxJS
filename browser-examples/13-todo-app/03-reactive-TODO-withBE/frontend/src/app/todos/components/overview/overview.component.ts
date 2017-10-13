@@ -49,7 +49,7 @@ export class OverviewComponent implements OnInit {
                 }
             )
             .switchMap(() => this.todoService.getTodos())
+            .do(todos => this.doneToDosLength = todos.filter(t => t.completed).length)
             .map(todos => todos.filter(t => !t.completed))
-            .do(todos => this.doneToDosLength = todos.length)
     }
 }
