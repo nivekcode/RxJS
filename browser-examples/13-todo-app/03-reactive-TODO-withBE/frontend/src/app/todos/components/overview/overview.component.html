@@ -1,0 +1,22 @@
+<section class="todoapp">
+  <header class="header">
+    <h1>Simplistic ToDo</h1>
+    <h4>A most simplistic ToDo List with Angular.</h4>
+    <div class="link-container">
+      <a routerLink="/done">
+        Done: {{doneToDosLength}}
+      </a>
+    </div>
+
+    <td-new-todo (onAddToDo)="add$.next($event)"></td-new-todo>
+  </header>
+
+  <section class="main">
+    <td-todo-list [todos]="todos$" (onRemoveToDo)="complete$.next($event)"></td-todo-list>
+  </section>
+</section>
+<footer class="info">
+
+  <p>JavaScript Example / Initial template from <a href="https://github.com/tastejs/todomvc-app-template">todomvc-app-template</a>
+  </p>
+</footer>

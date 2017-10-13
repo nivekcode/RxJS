@@ -1,0 +1,15 @@
+<div class="new-todo">
+  <form #formRef="ngForm" (ngSubmit)=" formRef.valid && addToDo()">
+    <input #inputRef="ngModel"
+           name="newToDoTitle"
+           [(ngModel)]="newToDoTitle"
+           required minlength="3"
+           tdCapitalLetterValidator
+           type="text"
+           placeholder="What needs to be done???"
+           autofocus autocomplete="off" />
+    <button *ngIf="formRef.valid" type="submit" class="add-button" id="add-button" >
+      +
+    </button>
+  </form>
+</div>

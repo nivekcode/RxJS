@@ -1,0 +1,12 @@
+<section class="todoapp">
+  <header class="header">
+    <h4>You are so productive:</h4>
+    <div class="link-container" >
+      <a routerLink="/">... back to work!</a>
+    </div>
+  </header>
+
+  <section class="main">
+    <td-todo-list [todos]="doneToDos$" (onRemoveToDo)="removeTodo$.next($event)"></td-todo-list>
+  </section>
+</section>

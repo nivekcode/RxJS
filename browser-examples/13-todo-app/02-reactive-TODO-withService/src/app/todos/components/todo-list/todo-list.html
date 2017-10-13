@@ -1,0 +1,8 @@
+<section class="main">
+    <ul class="todo-list">
+        <li *ngFor="let todo of todo$ | async">
+            {{ todo.title }}
+            <todo-remove [todo]="todo"></todo-remove>
+        </li>
+    </ul>
+</section>
