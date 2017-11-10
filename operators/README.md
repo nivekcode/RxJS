@@ -82,13 +82,14 @@
 - **windowToggle** Collect and emit observable of values from source between opening and closing emission.
 - **windowWhen** Close window at provided time frame emitting observable of collected values from source.
 
-##Utility Operators
+## Utility Operators
 - **do**Transparently perform actions or side-effects, such as logging.
 - **delay** Delay emitted values by given time.
 - **delayWhen** Delay emitted values determined by provided function.
 - **dematerialize** Turn notification objects into notification values.
 - **let** Let me have the whole observable.
 
-
-
+## Notification
+- **materialize** Emits a Notification Wrapper for the actual event
+- **dematerialize** Reconverts the Wrapped Notification from materialize and emits the correct event
 
