@@ -1,0 +1,19 @@
+{
+  "name": "marble-testing",
+  "version": "1.0.0",
+  "description": "Playground project for marble testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "keywords": [
+    "RxJS",
+    "Marble",
+    "Testing"
+  ],
+  "author": "Kevin Kreuzer",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^3.2.0"
+  }
+}
