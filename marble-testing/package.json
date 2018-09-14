@@ -4,7 +4,7 @@
   "description": "Playground project for marble testing",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine-ts \"./**/*.spec.ts\""
   },
   "keywords": [
     "RxJS",
@@ -14,6 +14,15 @@
   "author": "Kevin Kreuzer",
   "license": "ISC",
   "devDependencies": {
-    "jasmine": "^3.2.0"
+    "@types/jasmine": "^2.8.8",
+    "@types/node": "^10.9.4",
+    "@types/rx": "^4.1.1",
+    "jasmine": "^3.2.0",
+    "jasmine-marbles": "^0.4.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "jasmine-ts": "^0.2.1"
+  },
+  "dependencies": {
+    "rxjs": "^6.3.2"
   }
 }
