@@ -1,6 +1,6 @@
 import 'jasmine';
 import {TestScheduler} from 'rxjs/testing';
-import {filter, map, switchMap, take, throttleTime} from 'rxjs/operators';
+import {filter, map, mergeMap, switchMap, take, throttleTime} from 'rxjs/operators';
 import {cold} from 'jasmine-marbles';
 
 describe('Sample marble test', () => {
@@ -49,8 +49,8 @@ describe('Sample marble test', () => {
 
     it('must add each value from the outer to the inner observable and return the result', () => {
         const values = {a: 5, b: 10, c: 15, d: 20, e: 25, f: 30};
-        const source$ = cold(   '---a--ba-b---a', values);
-        const inner$ = cold(    'c-dca', values);
+        const source$ = cold('---a--ba-b---a', values);
+        const inner$ = cold('c-dca', values);
         const expected$ = cold('---d-eed-e-fed-edb', values);
 
         const result$ = source$.pipe(
@@ -58,6 +58,24 @@ describe('Sample marble test', () => {
                 map((y: number) => x + y)
             ))
         );
+        expect(result$).toBeObservable(expected$);
+    });
+
+    it('must merge inner streams', () => {
+        const source$ = cold('--a---a|');
+        const inner$ = cold('-bc-|');
+        const expected$ = cold('---bc--bc-|');
+
+        const result$ = source$.pipe(mergeMap(() => inner$));
+        expect(result$).toBeObservable(expected$);
+    });
+
+    it('must concat the inner streams', () => {
+        const source$ = cold('--a---a|');
+        const inner$ = cold('-bc-|');
+        const expected$ = cold('---bc--bc-|');
+
+        const result$ = source$.pipe(mergeMap(() => inner$));
         expect(result$).toBeObservable(expected$);
     });
 
