@@ -1,15 +1,14 @@
 import 'jasmine';
 import {TestScheduler} from 'rxjs/testing';
 import {filter, map, mergeMap, switchMap, take, throttleTime} from 'rxjs/operators';
-import {cold} from 'jasmine-marbles';
+import {cold, getTestScheduler} from 'jasmine-marbles';
+import {timer} from 'rxjs';
 
 describe('Sample marble test', () => {
 
-    const scheduler = new TestScheduler((actual, expected) => {
-        expect(actual).toEqual(expected);
-    });
 
     it('must skip the throttled value', () => {
+        const scheduler = getTestScheduler();
         scheduler.run(helpers => {
             const {cold, expectObservable, expectSubscriptions} = helpers;
             const stream$ = cold('-a--b--c---|');
@@ -79,4 +78,14 @@ describe('Sample marble test', () => {
         expect(result$).toBeObservable(expected$);
     });
 
+    it('must test a simple interval', () => {
+        const scheduler = getTestScheduler();
+
+        scheduler.run(helpers => {
+            const {expectObservable} = helpers;
+            const source = timer(10);
+            expectObservable(source).toBe('10ms (a|)', {a: 0});
+        });
+
+    });
 });
