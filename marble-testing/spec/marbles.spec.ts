@@ -2,7 +2,7 @@ import 'jasmine';
 import {TestScheduler} from 'rxjs/testing';
 import {filter, map, mergeMap, switchMap, take, throttleTime} from 'rxjs/operators';
 import {cold, getTestScheduler} from 'jasmine-marbles';
-import {timer} from 'rxjs';
+import {interval, timer} from 'rxjs';
 
 describe('Sample marble test', () => {
 
@@ -85,6 +85,23 @@ describe('Sample marble test', () => {
             const {expectObservable} = helpers;
             const source = timer(10);
             expectObservable(source).toBe('10ms (a|)', {a: 0});
+        });
+
+    });
+
+    it('must multply each tick by two', () => {
+
+        const scheduler = getTestScheduler();
+        scheduler.run(helpers => {
+            const {expectObservable} = helpers;
+            const source$ = interval(1000).pipe(
+                take(5),
+                map((value: number) => value * 2));
+
+            const expectedMarble = '1s a 999ms b 999ms c 999ms d 999ms (e|)';
+            const expectedValues = {a: 0, b: 2, c: 4, d: 6, e: 8};
+
+            expectObservable(source$).toBe(expectedMarble, expectedValues);
         });
 
     });
