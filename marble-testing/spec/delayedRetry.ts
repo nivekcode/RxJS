@@ -1,5 +1,5 @@
 import {interval, of, throwError} from 'rxjs';
-import {retryWhen, switchMap} from 'rxjs/operators';
+import {retryWhen, switchMap, tap} from 'rxjs/operators';
 
 export function delayedRetry(delay: number, maxRetries: number): any {
     return (source$: any) =>
@@ -8,10 +8,8 @@ export function delayedRetry(delay: number, maxRetries: number): any {
                 return interval(delay).pipe(
                     switchMap((counter: number) => {
                         if (counter >= maxRetries) {
-                            console.error('All retries failed');
                             return throwError('I give up');
                         }
-                        console.info('I am going to retry');
                         return of(counter);
                     })
                 )

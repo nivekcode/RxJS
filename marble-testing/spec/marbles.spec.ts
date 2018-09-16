@@ -1,8 +1,8 @@
 import 'jasmine';
-import {TestScheduler} from 'rxjs/testing';
-import {filter, map, mergeMap, switchMap, take, throttleTime} from 'rxjs/operators';
-import {cold, getTestScheduler} from 'jasmine-marbles';
-import {interval, timer} from 'rxjs';
+import {filter, map, mergeMap, switchMap, take, tap, throttleTime} from 'rxjs/operators';
+import {cold, getTestScheduler, hot} from 'jasmine-marbles';
+import {interval, of, throwError, timer} from 'rxjs';
+import {delayedRetry} from './delayedRetry';
 
 describe('Sample marble test', () => {
 
@@ -104,5 +104,51 @@ describe('Sample marble test', () => {
             expectObservable(source$).toBe(expectedMarble, expectedValues);
         });
 
+    });
+
+    it('must retry if the source observable throws an error', () => {
+
+        const scheduler = getTestScheduler();
+
+        scheduler.run(helpers => {
+
+            const {expectObservable} = helpers;
+            let counter = 0;
+            const source$ = of(counter).pipe(
+                tap(() => counter++),
+                switchMap(() => {
+                    if (counter < 3) {
+                        return throwError('Something wrong');
+                    }
+                    return of(counter);
+                })
+            );
+            const expectedMarble = '2s (a|)';
+
+            const result$ = source$.pipe(delayedRetry(1000, 5));
+            expectObservable(result$).toBe(expectedMarble, {a: 3});
+        });
+
+    });
+
+    it('must return the value if source observable return a value', () => {
+        const source$ = cold('--a|');
+        const expected$ = cold('--a|');
+
+        const result$ = source$.pipe(delayedRetry(1000, 5));
+        expect(result$).toBeObservable(expected$);
+    });
+
+    it('must throw the error after all the retires failed', () => {
+        const scheduler = getTestScheduler();
+
+        scheduler.run(helpers => {
+            const {expectObservable} = helpers;
+            const source$ = cold('--#');
+            const expectedMarble = '6002ms #';
+
+            const result$ = source$.pipe(delayedRetry(1000, 5));
+            expectObservable(result$).toBe(expectedMarble, null, 'I give up');
+        });
     });
 });
