@@ -1,11 +1,18 @@
 import 'jasmine';
 import {filter, map, mergeMap, switchMap, take, tap, throttleTime} from 'rxjs/operators';
-import {cold, getTestScheduler, hot} from 'jasmine-marbles';
+import {cold, getTestScheduler} from 'jasmine-marbles';
 import {interval, of, throwError, timer} from 'rxjs';
 import {delayedRetry} from './delayedRetry';
 
 describe('Sample marble test', () => {
 
+    it('simple marble test', () => {
+        const source$ = cold('--a--b--c|', {a: 5, b: 10, c: 15});
+        const expected$ = cold('--x--y--z|', {x: 10, y: 20, z: 30});
+
+        const result$ = source$.pipe(map((x: number) => x * 2));
+        expect(result$).toBeObservable(expected$);
+    });
 
     it('must skip the throttled value', () => {
         const scheduler = getTestScheduler();
