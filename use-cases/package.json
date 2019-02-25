@@ -1,0 +1,35 @@
+{
+  "name": "rxjs-use-cases",
+  "version": "1.0.0",
+  "description": "Real world examples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "ts-node performance.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kreuzerk/RxJS.git"
+  },
+  "keywords": [
+    "RxJS",
+    "Observable",
+    "Reactive",
+    "JavaScript"
+  ],
+  "author": "Kevin Kreuzer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kreuzerk/RxJS/issues"
+  },
+  "homepage": "https://github.com/kreuzerk/RxJS#readme",
+  "dependencies": {
+    "harrypotter-names": "^1.1.0",
+    "rxjs": "^6.4.0",
+    "uid": "0.0.2"
+  },
+  "devDependencies": {
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.3333"
+  }
+}
