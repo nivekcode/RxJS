@@ -16,7 +16,7 @@ const BALL_ACTIONS = {
  Merge Map --> Allows you to have multiple balls at the same time
  */
 Rx.Observable.merge(dropClicks$, mouseMoves$, speech$)
-    .mergeMap(_ => dropBall(svg)
+    .concatMap(_ => dropBall(svg)
         .map(e => ({action: BALL_ACTIONS.MOVING}))
         .startWith({action: BALL_ACTIONS.STARTED})
         .concat([{action: BALL_ACTIONS.ENDED}])
